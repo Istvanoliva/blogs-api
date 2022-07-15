@@ -1,10 +1,14 @@
+const status = require('../status');
+
 const fieldsValidator = {
     isFilled: (req, res, next) => {
-        const message = { message: 'Some required fields are missing' };
+        const { missingFields } = status;
         const fields = Object.values(req.body);
         const isEmpty = fields.some((item) => !item.length);
 
-        if (isEmpty) return res.status(400).json(message);
+        if (isEmpty) {
+            return res.status(missingFields.status).json({ message: missingFields.message });
+        }
         next();
     },
 };
