@@ -23,6 +23,14 @@ const status = {
         status: 409,
         message: 'User already registered',
     },
+    noToken: {
+        status: 401,
+        message: 'Token not found',
+    },
+    invalidToken: {
+        status: 401,
+        message: 'Expired or invalid token',
+    },
 };
 
 module.exports = status;
