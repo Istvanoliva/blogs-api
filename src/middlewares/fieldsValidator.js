@@ -31,6 +31,16 @@ const fieldsValidator = {
         }
         next();
     },
+    passwordValidator: (req, res, next) => {
+        const { invalidPassword } = status;
+        const { password } = req.body;
+        const MIN_LENGTH = 6;
+        
+        if (password.length < MIN_LENGTH) {
+            return res.status(invalidPassword.status).json({ message: invalidPassword.message });
+        }
+        next();        
+    },
 };
 
 module.exports = fieldsValidator;
