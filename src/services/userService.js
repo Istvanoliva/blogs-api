@@ -8,9 +8,7 @@ const loginService = {
 
         if (!user || user.password !== password) throw status.invalidField;
 
-        const token = generateToken(email);
-
-        return token;
+        return generateToken(email);
     },
     createUser: async (data) => {
         const { email } = data;
