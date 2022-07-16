@@ -35,6 +35,10 @@ const status = {
         status: 404,
         message: 'User does not exist',
     },
+    noName: {
+        status: 400,
+        message: '"name" is required',
+    },
 };
 
 module.exports = status;
