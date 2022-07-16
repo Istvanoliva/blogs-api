@@ -31,6 +31,10 @@ const status = {
         status: 401,
         message: 'Expired or invalid token',
     },
+    userNotFound: {
+        status: 404,
+        message: 'User does not exist',
+    },
 };
 
 module.exports = status;
