@@ -41,6 +41,12 @@ const fieldsValidator = {
         }
         next();        
     },
+    checkName: (req, res, next) => {
+        const { noName } = status;
+        const { name } = req.body;
+        if (!name) return res.status(noName.status).json({ message: noName.message });
+        next();
+    },
 };
 
 module.exports = fieldsValidator;
