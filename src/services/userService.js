@@ -12,6 +12,15 @@ const loginService = {
 
         return token;
     },
+    createUser: async (data) => {
+        const { email } = data;
+        const user = await User.findOne({ where: { email } });
+
+        if (user) throw status.emailExist;
+
+        await User.create({ ...data });
+        return generateToken(email);
+    },
 };
 
 module.exports = loginService;
