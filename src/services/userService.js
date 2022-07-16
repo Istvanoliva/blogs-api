@@ -19,6 +19,7 @@ const loginService = {
         await User.create({ ...data });
         return generateToken(email);
     },
+    getAllUsers: () => User.findAll({ attributes: { exclude: 'password' } }),
 };
 
 module.exports = loginService;
