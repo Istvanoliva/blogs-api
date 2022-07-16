@@ -1,3 +1,4 @@
+const validator = require('email-validator');
 const status = require('../status');
 
 const fieldsValidator = {
@@ -18,6 +19,15 @@ const fieldsValidator = {
         
         if (displayName.length < MIN_LENGTH) {
             return res.status(invalidName.status).json({ message: invalidName.message });
+        }
+        next();
+    },
+    emailValidator: (req, res, next) => {
+        const { invalidEmail } = status;
+        const { email } = req.body;
+        const validate = validator.validate(email);
+        if (!validate) {
+            return res.status(invalidEmail.status).json({ message: invalidEmail.message });
         }
         next();
     },
