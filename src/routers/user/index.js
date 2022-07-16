@@ -13,4 +13,6 @@ userController.createUser);
 
 userRouter.get('/', tokenValidator, userController.getAllUsers);
 
+userRouter.get('/:id', tokenValidator, userController.findUser);
+
 module.exports = userRouter;

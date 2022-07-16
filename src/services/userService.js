@@ -20,6 +20,13 @@ const loginService = {
         return generateToken(email);
     },
     getAllUsers: () => User.findAll({ attributes: { exclude: 'password' } }),
+
+    findUser: async (id) => {
+        const user = await User.findOne({ where: { id }, attributes: { exclude: 'password' } });
+        
+        if (!user) throw status.userNotFound;
+        return user; 
+    },
 };
 
 module.exports = loginService;

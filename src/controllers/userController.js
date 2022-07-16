@@ -27,6 +27,15 @@ const userController = {
             next(error);
         }
     },
+    findUser: async (req, res, next) => {
+        const { id } = req.params;
+        try {
+            const user = await userService.findUser(id);
+            return res.status(200).json(user);
+        } catch (error) {
+            next(error);
+        }
+    },
 };
 
 module.exports = userController;
