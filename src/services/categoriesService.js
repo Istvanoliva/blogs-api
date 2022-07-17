@@ -5,6 +5,7 @@ const categoriesService = {
         const newCategory = await Category.create({ name });
         return newCategory;
     },
+    getAllCategories: () => Category.findAll(),
 };
 
 module.exports = categoriesService;
