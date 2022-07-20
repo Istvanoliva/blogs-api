@@ -18,6 +18,15 @@ const postController = {
             next(error);
         }
     },
+    getPost: async (req, res, next) => {
+        const { id } = req.params;
+        try {
+            const post = await postService.getPost(id);
+            return res.status(200).json(post);
+        } catch (error) {
+            next(error);
+        }
+    },
 };
 
 module.exports = postController;
