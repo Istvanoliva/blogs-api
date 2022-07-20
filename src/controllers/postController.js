@@ -10,6 +10,14 @@ const postController = {
             next(error);
         }
     },
+    getAllPosts: async (_req, res, next) => {
+        try {
+            const posts = await postService.getAllPosts();
+            return res.status(200).json(posts);
+        } catch (error) {
+            next(error);
+        }
+    },
 };
 
 module.exports = postController;

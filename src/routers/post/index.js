@@ -8,4 +8,6 @@ const postController = require('../../controllers/postController');
 postRouter.post('/', tokenValidator, fieldsValidator.isFilled, fieldsValidator.categoryValidator,
 postController.createPost);
 
+postRouter.get('/', tokenValidator, postController.getAllPosts);
+
 module.exports = postRouter;
