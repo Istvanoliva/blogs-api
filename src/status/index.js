@@ -39,6 +39,10 @@ const status = {
         status: 400,
         message: '"name" is required',
     },
+    noCategory: {
+        status: 400,
+        message: '"categoryIds" not found',
+    },
 };
 
 module.exports = status;
