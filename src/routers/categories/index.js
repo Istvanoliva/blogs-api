@@ -2,14 +2,14 @@ const express = require('express');
 
 const categoriesRouter = express.Router();
 
-const tokenValidator = require('../../middlewares/tokenValidator');
+const jwtMiddleware = require('../../middlewares/jwtMiddleware');
 const fieldsValidator = require('../../middlewares/fieldsValidator');
 const categoriesController = require('../../controllers/categoriesController');
 
-categoriesRouter.post('/', tokenValidator,
+categoriesRouter.post('/', jwtMiddleware.tokenValidator,
 fieldsValidator.checkName,
 categoriesController.addCategory);
 
-categoriesRouter.get('/', tokenValidator, categoriesController.getAllCategories);
+categoriesRouter.get('/', jwtMiddleware.tokenValidator, categoriesController.getAllCategories);
 
 module.exports = categoriesRouter;

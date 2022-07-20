@@ -1,15 +1,20 @@
 const express = require('express');
 
 const postRouter = express.Router();
-const tokenValidator = require('../../middlewares/tokenValidator');
+
+const jwtMiddleware = require('../../middlewares/jwtMiddleware');
 const fieldsValidator = require('../../middlewares/fieldsValidator');
 const postController = require('../../controllers/postController');
 
-postRouter.post('/', tokenValidator, fieldsValidator.isFilled, fieldsValidator.categoryValidator,
+postRouter.post('/', jwtMiddleware.tokenValidator,
+fieldsValidator.isFilled,
+fieldsValidator.categoryValidator,
 postController.createPost);
 
-postRouter.get('/', tokenValidator, postController.getAllPosts);
+postRouter.get('/', jwtMiddleware.tokenValidator, postController.getAllPosts);
 
-postRouter.get('/:id', tokenValidator, postController.getPost);
+postRouter.get('/:id', jwtMiddleware.tokenValidator, postController.getPost);
+
+postRouter.put('/:id');
 
 module.exports = postRouter;
