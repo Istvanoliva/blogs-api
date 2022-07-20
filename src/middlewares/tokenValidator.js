@@ -6,11 +6,13 @@ const secret = process.env.JWT_SECRET;
 
 const tokenValidator = (req, res, next) => {
     const { noToken, invalidToken } = status;
-    try {
-      const token = req.headers.authorization;
+    const { authorization: token } = req.headers;
 
-      if (!token) return res.status(noToken.status).json({ message: noToken.message });
-      jwt.verify(token, secret);
+    if (!token) return res.status(noToken.status).json({ message: noToken.message });
+
+    try {
+      const user = jwt.verify(token, secret);
+      req.user = user;
       next();
     } catch (error) {
         return res.status(invalidToken.status).json({ message: invalidToken.message }); 
