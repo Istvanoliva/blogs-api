@@ -1,5 +1,6 @@
 const validator = require('email-validator');
 const status = require('../status');
+const { Category } = require('../database/models');
 
 const fieldsValidator = {
     isFilled: (req, res, next) => {
@@ -45,6 +46,13 @@ const fieldsValidator = {
         const { noName } = status;
         const { name } = req.body;
         if (!name) return res.status(noName.status).json({ message: noName.message });
+        next();
+    },
+    categoryValidator: async (req, res, next) => {
+        const { noCategory } = status;
+        const { categoryIds } = req.body;
+        const { count } = await Category.findAndCountAll({ where: { id: categoryIds } });
+        if (!count) return res.status(noCategory.status).json({ message: noCategory.message });
         next();
     },
 };
