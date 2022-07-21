@@ -20,4 +20,8 @@ jwtMiddleware.verifyUser,
 fieldsValidator.isFilled,
 postController.updatePost);
 
+postRouter.delete('/:id', jwtMiddleware.tokenValidator,
+jwtMiddleware.verifyUser,
+postController.deletePost);
+
 module.exports = postRouter;

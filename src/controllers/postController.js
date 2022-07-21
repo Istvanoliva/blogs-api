@@ -37,6 +37,15 @@ const postController = {
             next(error);
         }
     },
+    deletePost: async (req, res, next) => {
+        const { id } = req.params;
+        try {
+            await postService.deletePost(id);
+            res.status(204).end();
+        } catch (error) {
+            next(error);
+        }
+    },
 };
 
 module.exports = postController;

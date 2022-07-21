@@ -58,6 +58,7 @@ const postService = {
           });
           return updated;
     },
+    deletePost: (id) => BlogPost.destroy({ where: { id } }),
 };
 
 module.exports = postService;
