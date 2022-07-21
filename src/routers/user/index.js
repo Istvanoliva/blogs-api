@@ -15,4 +15,7 @@ userRouter.get('/', jwtMiddleware.tokenValidator, userController.getAllUsers);
 
 userRouter.get('/:id', jwtMiddleware.tokenValidator, userController.findUser);
 
+userRouter.delete('/me', jwtMiddleware.tokenValidator,
+userController.deleteUser);
+
 module.exports = userRouter;

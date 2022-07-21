@@ -36,6 +36,15 @@ const userController = {
             next(error);
         }
     },
+    deleteUser: async (req, res, next) => {
+        const { id } = req.user.data;
+        try {
+            await userService.deleteUser(id);
+            res.status(204).end();
+        } catch (error) {
+            next(error);
+        }
+    },
 };
 
 module.exports = userController;

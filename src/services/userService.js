@@ -27,6 +27,7 @@ const loginService = {
         if (!user) throw status.userNotFound;
         return user; 
     },
+    deleteUser: (id) => User.destroy({ where: { id } }),
 };
 
 module.exports = loginService;
