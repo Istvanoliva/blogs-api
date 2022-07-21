@@ -15,6 +15,9 @@ postRouter.get('/', jwtMiddleware.tokenValidator, postController.getAllPosts);
 
 postRouter.get('/:id', jwtMiddleware.tokenValidator, postController.getPost);
 
-postRouter.put('/:id');
+postRouter.put('/:id', jwtMiddleware.tokenValidator,
+jwtMiddleware.verifyUser,
+fieldsValidator.isFilled,
+postController.updatePost);
 
 module.exports = postRouter;

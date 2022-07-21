@@ -48,6 +48,16 @@ const postService = {
         if (!idExist) throw status.noPost;
         return idExist;
     },
+    updatePost: async (id, title, content) => {
+        await BlogPost.update({ title, content }, { where: { id } });
+        const updated = await BlogPost.findByPk(id, { 
+            include: [
+              { model: User, as: 'user', attributes: { exclude: ['password'] } },
+              { model: Category, as: 'categories' },
+            ],
+          });
+          return updated;
+    },
 };
 
 module.exports = postService;
