@@ -47,6 +47,10 @@ const status = {
         status: 404,
         message: 'Post does not exist',
     },
+    unauthorized: {
+        status: 401,
+        message: 'Unauthorized user',
+    },
 };
 
 module.exports = status;
