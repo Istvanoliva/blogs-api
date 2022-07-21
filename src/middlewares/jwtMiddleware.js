@@ -26,13 +26,18 @@ const jwtMiddleware = {
         const { authorization: token } = req.headers;
         const { id } = req.params;
 
-        const user = jwt.verify(token, secret);
-        const post = await BlogPost.findByPk(id);
-
-        if (user.data.id !== post.dataValues.userId) {
-            return res.status(unauthorized.status).json({ message: unauthorized.message });
+        try {
+            const user = jwt.verify(token, secret);
+            const post = await BlogPost.findByPk(id);
+            
+            if (!post) throw status.noPost;
+            if (user.data.id !== post.dataValues.userId) {
+                return res.status(unauthorized.status).json({ message: unauthorized.message });
+            }
+            next();
+        } catch (error) {
+            next(error);
         }
-        next();
       },
 }; 
 
