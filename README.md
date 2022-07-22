@@ -93,6 +93,10 @@
   
     - `docker-compose down`;
   </details>
+  <details>
+    <summary>:eyes: <strong>Teste a aplicação</strong></summary>
+    <p>:construction: Em construção :construction:</p>
+  </details>
 </div>
 
 #
