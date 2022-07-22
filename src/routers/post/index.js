@@ -13,6 +13,8 @@ postController.createPost);
 
 postRouter.get('/', jwtMiddleware.tokenValidator, postController.getAllPosts);
 
+postRouter.get('/search', jwtMiddleware.tokenValidator, postController.searchPost);
+
 postRouter.get('/:id', jwtMiddleware.tokenValidator, postController.getPost);
 
 postRouter.put('/:id', jwtMiddleware.tokenValidator,

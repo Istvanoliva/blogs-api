@@ -46,6 +46,15 @@ const postController = {
             next(error);
         }
     },
+    searchPost: async (req, res, next) => {
+        const { q } = req.query;
+        try {
+            const posts = await postService.searchPost(q);
+            return res.status(200).json(posts);
+        } catch (error) {
+            next(error);
+        }
+    },
 };
 
 module.exports = postController;
